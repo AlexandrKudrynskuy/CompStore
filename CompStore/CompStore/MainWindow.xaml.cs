@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Dll.Context;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,8 +22,11 @@ namespace CompStore
     /// </summary>
     public partial class MainWindow : Window
     {
+        private CompStoreContext context;
         public MainWindow()
         {
+            var conectionOption = new DbContextOptionsBuilder<CompStoreContext>().UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CompStore;Integrated Security=True;").Options;
+            context = new CompStoreContext(conectionOption);
             InitializeComponent();
         }
     }
