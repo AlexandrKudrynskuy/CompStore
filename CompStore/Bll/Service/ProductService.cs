@@ -18,7 +18,9 @@ namespace Bll.Service
         {
             repository = productRepository;
         }
+
         public void Create(Product product)=>repository.Create(product);
+
         public void Delete(int id)=>repository.Delete(id);
         public void Update(int id, Product product)=>repository.Update(id, product);
         public Product GetValue(int id)=>repository.GetValue(id);

@@ -14,5 +14,7 @@ namespace Dll.Repository
         void Delete(int id);
         T GetValue(int id);
         IEnumerable<T> GetFromCondition(Expression<Func<T, bool>> condition);
+
+
     }
 }

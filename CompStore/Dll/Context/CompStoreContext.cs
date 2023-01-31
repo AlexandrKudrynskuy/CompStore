@@ -23,8 +23,6 @@ namespace Dll.Context
             modelBuilder.Entity<Order>().HasOne<Customer>(x => x.Customer).WithMany(x => x.Orders).HasForeignKey(x => x.CustomerId);
             modelBuilder.Entity<Order>().HasOne<Product>(x => x.Product).WithMany(x => x.Orders).HasForeignKey(x => x.ProductId);
 
-
-
             modelBuilder.Entity<Brand>().HasData(new Brand {Id=1,  Name = "HP", Logo = "ImgHp" , Description="HpDescr"});
             modelBuilder.Entity<Brand>().HasData(new Brand { Id=2, Name = "Dell", Logo = "ImgDell" , Description="DellDescr"});
             modelBuilder.Entity<Brand>().HasData(new Brand { Id=3, Name = "Samsung", Logo = "ImgSamsung", Description = "SamsungDescr" });
