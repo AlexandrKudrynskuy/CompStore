@@ -28,8 +28,24 @@ namespace CompStore
         private void ConfigureServices(ServiceCollection service)
         {
             service.AddDbContext<CompStoreContext>(option => { option.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CompStore;Integrated Security=True;");});
+           
             service.AddTransient<ProductService>();
             service.AddTransient<ProductRepository>();
+            
+            service.AddTransient<BrandService>();
+            service.AddTransient<BrandRepository>();
+            
+            service.AddTransient<CustomersService>();
+            service.AddTransient<CustomerRepository>();
+
+
+            service.AddTransient<OrderService>();
+            service.AddTransient<OrderRepository>();
+
+
+            service.AddTransient<CategoryService>();
+            service.AddTransient<CategoryRepository>();
+
             service.AddTransient<MainWindow>();
         }
 

@@ -28,7 +28,7 @@ namespace CompStore
     public partial class MainWindow : Window
     {
         private readonly ProductService productService;
-        public MainWindow(ProductService _productService)
+        public MainWindow(ProductService _productService, CategoryService categoryService )
         {
             //InitializeComponent();
             productService = _productService;
@@ -41,12 +41,17 @@ namespace CompStore
             //    expression = x => x.Price < 4000;
 
             //}
-          
+
             //if (DateTextBox1_Text != null)
             //{
             //    expression = x => x.BrandId == 1;
             //}
 
+            var cat =categoryService.GetFromCondition(x => x.Id == 3);
+            var prod = productService.GetFromCondition(x => x.Price < 2300);
+
+            //categoryService.Create(new Category { Name = "Others1" });
+            //productService.Create(new Laptop { BrandId = 1, CategoryID = 1, Price = 22200, Model = "New", Discription = "Laptop", Hdd = 120, Processor = "I5", Ram = 4, Count = 12 });
 
             this.Show();
 

@@ -30,7 +30,7 @@ namespace Dll.Repository
             context.Products.Remove(data);
             context.SaveChanges();
         }        
-        public IEnumerable<Product> GetFromCondition(Expression<Func<Product, bool>> condition) => context.Products.Where(condition).ToList();
+        public IEnumerable<Product> GetFromCondition(Expression<Func<Product, bool>> condition) => context.Products.Where(condition).Include(nameof(Product.Brand)).Include(nameof(Product.Category)).Include(nameof(Product.Orders)).ToList();
         public Product GetValue(int id) => context.Products.First(x => x.Id == id) ;
         public void Update(int id, Product data)
         {
@@ -44,6 +44,7 @@ namespace Dll.Repository
             oldData.BrandId = data.BrandId;
             oldData.Orders = data.Orders;
             oldData.BrandId = data.BrandId;
+            oldData.Photo = data.Photo;
             if (oldData is Laptop OldLaptop)
             {
                 var laptop = data as Laptop;

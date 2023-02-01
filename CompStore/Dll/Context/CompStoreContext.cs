@@ -51,7 +51,8 @@ namespace Dll.Context
 
             modelBuilder.Entity<Product>().Property(x => x.Model).HasMaxLength(50);//MaxLength Name
             modelBuilder.Entity<Product>().Property(x => x.Discription).HasMaxLength(150);//MaxLength Name
-            modelBuilder.Entity<Product>().Property(x => x.Model).IsRequired(true);//Column Name not nullable
+            modelBuilder.Entity<Product>().Property(x => x.Model).IsRequired(true);//Column  not nullable
+            modelBuilder.Entity<Product>().Property(x => x.Photo).IsRequired(false);//Column not nullable
 
             modelBuilder.Entity<MFU>().Property(x => x.DPI).HasMaxLength(15);//MaxLength Name
             modelBuilder.Entity<MFU>().Property(x => x.DPI).IsRequired(true);//Column Name not nullable
@@ -67,26 +68,26 @@ namespace Dll.Context
 
 
             #region Add In Db
-            modelBuilder.Entity<Laptop>().HasData(new Laptop { Id = 1, BrandId = 1, CategoryID = 1, Price = 22200, Model = "L1", Discription = "Laptop", Hdd = 120, Processor = "I5" , Ram=4});
-            modelBuilder.Entity<Laptop>().HasData(new Laptop { Id = 2, BrandId = 2, CategoryID = 2, Price = 34400, Model = "L2", Discription = "Laptop", Hdd = 240, Processor = "I7",  Ram = 12 });
-            modelBuilder.Entity<Laptop>().HasData(new Laptop { Id = 3, BrandId = 3, CategoryID = 1, Price = 12200, Model = "L3", Discription = "Laptop", Hdd = 512, Processor = "I3",  Ram = 8 });
-            modelBuilder.Entity<Laptop>().HasData(new Laptop { Id = 4, BrandId = 2, CategoryID = 2, Price = 15600, Model = "L4", Discription = "Laptop", Hdd = 240, Processor = "Celeron", Ram = 16 });
+            modelBuilder.Entity<Laptop>().HasData(new Laptop { Id = 1, BrandId = 1, CategoryID = 1, Price = 22200, Model = "L1", Discription = "Laptop", Hdd = 120, Processor = "I5" , Ram=4, Count=12});
+            modelBuilder.Entity<Laptop>().HasData(new Laptop { Id = 2, BrandId = 2, CategoryID = 2, Price = 34400, Model = "L2", Discription = "Laptop", Hdd = 240, Processor = "I7",  Ram = 12, Count = 8 });
+            modelBuilder.Entity<Laptop>().HasData(new Laptop { Id = 3, BrandId = 3, CategoryID = 1, Price = 12200, Model = "L3", Discription = "Laptop", Hdd = 512, Processor = "I3",  Ram = 8, Count = 3 });
+            modelBuilder.Entity<Laptop>().HasData(new Laptop { Id = 4, BrandId = 2, CategoryID = 2, Price = 15600, Model = "L4", Discription = "Laptop", Hdd = 240, Processor = "Celeron", Ram = 16, Count = 1 });
 
-            modelBuilder.Entity<MFU>().HasData(new MFU { Id = 5, BrandId = 1, CategoryID = 1, Price = 15600, Model = "P4", Discription = "Printers", PrinterType = PrinterType.Laser, DPI="600*1200", HasWiFi = true, ColorCount=1 });
-            modelBuilder.Entity<MFU>().HasData(new MFU { Id = 6, BrandId = 3, CategoryID = 1, Price = 15600, Model = "P4", Discription = "Printers", PrinterType = PrinterType.Laser, DPI = "600*1200", HasWiFi = true, ColorCount = 4 });
-            modelBuilder.Entity<MFU>().HasData(new MFU { Id = 7, BrandId = 2, CategoryID = 1, Price = 15600, Model = "P4", Discription = "Printers", PrinterType = PrinterType.Laser , DPI = "600*1200", HasWiFi = false, ColorCount = 6 });
-            modelBuilder.Entity<MFU>().HasData(new MFU { Id = 8, BrandId = 1, CategoryID = 1, Price = 15600, Model = "P4", Discription = "Printers", PrinterType = PrinterType.Laser, DPI = "600*1200", HasWiFi = true, ColorCount = 1 });
+            modelBuilder.Entity<MFU>().HasData(new MFU { Id = 5, BrandId = 1, CategoryID = 1, Price = 15600, Model = "P4", Discription = "Printers", PrinterType = PrinterType.Laser, DPI="600*1200", HasWiFi = true, ColorCount=1, Count = 3 });
+            modelBuilder.Entity<MFU>().HasData(new MFU { Id = 6, BrandId = 3, CategoryID = 1, Price = 15600, Model = "P4", Discription = "Printers", PrinterType = PrinterType.Laser, DPI = "600*1200", HasWiFi = true, ColorCount = 4, Count = 8});
+            modelBuilder.Entity<MFU>().HasData(new MFU { Id = 7, BrandId = 2, CategoryID = 1, Price = 15600, Model = "P4", Discription = "Printers", PrinterType = PrinterType.Laser , DPI = "600*1200", HasWiFi = false, ColorCount = 6, Count = 3 });
+            modelBuilder.Entity<MFU>().HasData(new MFU { Id = 8, BrandId = 1, CategoryID = 1, Price = 15600, Model = "P4", Discription = "Printers", PrinterType = PrinterType.Laser, DPI = "600*1200", HasWiFi = true, ColorCount = 1, Count = 5 });
 
 
-            modelBuilder.Entity<Display>().HasData(new Display { Id = 9, BrandId = 1, CategoryID = 3, Price = 4560, Model = "D1", Discription = "Diіз", Color = "Blask", DiagonalSize=21, Resolution="1280*1024" });
-            modelBuilder.Entity<Display>().HasData(new Display { Id = 10, BrandId = 2, CategoryID = 3, Price = 4860, Model = "D2", Discription = "Diіз", Color = "Blask", DiagonalSize = 21, Resolution = "1280*1024" });
-            modelBuilder.Entity<Display>().HasData(new Display { Id = 11, BrandId = 3, CategoryID = 3, Price = 4960, Model = "D3", Discription = "Diіз", Color = "Blask", DiagonalSize = 21, Resolution = "1280*1024" });
-            modelBuilder.Entity<Display>().HasData(new Display { Id = 12, BrandId = 1, CategoryID = 3, Price = 4560, Model = "D4", Discription = "Diіз", Color = "Blask", DiagonalSize = 21, Resolution = "1280*1024" });
+            modelBuilder.Entity<Display>().HasData(new Display { Id = 9, BrandId = 1, CategoryID = 3, Price = 4560, Model = "D1", Discription = "Diіз", Color = "Blask", DiagonalSize=21, Resolution="1280*1024", Count = 3 });
+            modelBuilder.Entity<Display>().HasData(new Display { Id = 10, BrandId = 2, CategoryID = 3, Price = 4860, Model = "D2", Discription = "Diіз", Color = "Blask", DiagonalSize = 21, Resolution = "1280*1024", Count = 1 });
+            modelBuilder.Entity<Display>().HasData(new Display { Id = 11, BrandId = 3, CategoryID = 3, Price = 4960, Model = "D3", Discription = "Diіз", Color = "Blask", DiagonalSize = 21, Resolution = "1280*1024", Count = 2 });
+            modelBuilder.Entity<Display>().HasData(new Display { Id = 12, BrandId = 1, CategoryID = 3, Price = 4560, Model = "D4", Discription = "Diіз", Color = "Blask", DiagonalSize = 21, Resolution = "1280*1024", Count = 3 });
 
-            modelBuilder.Entity<Speaker>().HasData(new Speaker { Id = 13, BrandId = 1, CategoryID = 4, Price = 560, Model = "S4", Discription = "Diіз", Color = "Blask", Power=12, Heigth=20, Width=30 });
-            modelBuilder.Entity<Speaker>().HasData(new Speaker { Id = 14, BrandId = 2, CategoryID = 4, Price = 230, Model = "S4", Discription = "Diіз", Color = "Blask", Power = 12, Heigth = 20, Width = 30 });
-            modelBuilder.Entity<Speaker>().HasData(new Speaker { Id = 15, BrandId = 3, CategoryID = 4, Price = 660, Model = "S4", Discription = "Diіз", Color = "Blask", Power = 12, Heigth = 20, Width = 30 });
-            modelBuilder.Entity<Speaker>().HasData(new Speaker { Id = 16, BrandId = 3, CategoryID = 4, Price = 860, Model = "S4", Discription = "Diіз", Color = "Blask", Power = 12, Heigth = 20, Width = 30 });
+            modelBuilder.Entity<Speaker>().HasData(new Speaker { Id = 13, BrandId = 1, CategoryID = 4, Price = 560, Model = "S4", Discription = "Diіз", Color = "Blask", Power=12, Heigth=20, Width=30, Count = 3 });
+            modelBuilder.Entity<Speaker>().HasData(new Speaker { Id = 14, BrandId = 2, CategoryID = 4, Price = 230, Model = "S4", Discription = "Diіз", Color = "Blask", Power = 12, Heigth = 20, Width = 30, Count = 5 });
+            modelBuilder.Entity<Speaker>().HasData(new Speaker { Id = 15, BrandId = 3, CategoryID = 4, Price = 660, Model = "S4", Discription = "Diіз", Color = "Blask", Power = 12, Heigth = 20, Width = 30, Count = 2 });
+            modelBuilder.Entity<Speaker>().HasData(new Speaker { Id = 16, BrandId = 3, CategoryID = 4, Price = 860, Model = "S4", Discription = "Diіз", Color = "Blask", Power = 12, Heigth = 20, Width = 30, Count = 1 });
 
 
 
@@ -109,17 +110,17 @@ namespace Dll.Context
             modelBuilder.Entity<Customer>().HasData(new Customer { Id = 6, Name = "Maria", SurName = "Sergienko", Login = "Maria", Password = "1", Email = "Maria@ukr.net", Phone = 098453425 });
 
 
-            //modelBuilder.Entity<Order>().HasData(new Order { Id = 1, CustomerId = 1, ProductId = 1, Status = true, DateOrder = DateTime.Now });
-            //modelBuilder.Entity<Order>().HasData(new Order { Id = 2, CustomerId = 6, ProductId = 2, Status = false, DateOrder = DateTime.Now });
-            //modelBuilder.Entity<Order>().HasData(new Order { Id = 3, CustomerId = 3, ProductId = 3, Status = true, DateOrder = DateTime.Now });
-            //modelBuilder.Entity<Order>().HasData(new Order { Id = 4, CustomerId = 4, ProductId = 4, Status = false, DateOrder = DateTime.Now });
-            //modelBuilder.Entity<Order>().HasData(new Order { Id = 5, CustomerId = 2, ProductId = 5, Status = true, DateOrder = DateTime.Now });
-            //modelBuilder.Entity<Order>().HasData(new Order { Id = 6, CustomerId = 3, ProductId = 3, Status = false, DateOrder = DateTime.Now });
-            //modelBuilder.Entity<Order>().HasData(new Order { Id = 7, CustomerId = 5, ProductId = 2, Status = true, DateOrder = DateTime.Now });
-            //modelBuilder.Entity<Order>().HasData(new Order { Id = 8, CustomerId = 2, ProductId = 1, Status = false, DateOrder = DateTime.Now });
-            //modelBuilder.Entity<Order>().HasData(new Order { Id = 9, CustomerId = 1, ProductId = 2, Status = true, DateOrder = DateTime.Now });
-            //modelBuilder.Entity<Order>().HasData(new Order { Id = 10, CustomerId = 4, ProductId = 1, Status = false, DateOrder = DateTime.Now });
-            //modelBuilder.Entity<Order>().HasData(new Order { Id = 11, CustomerId = 6, ProductId = 5, Status = true, DateOrder = DateTime.Now });
+            modelBuilder.Entity<Order>().HasData(new Order { Id = 1, CustomerId = 1, ProductId = 1, Status = true, DateOrder = DateTime.Now });
+            modelBuilder.Entity<Order>().HasData(new Order { Id = 2, CustomerId = 6, ProductId = 2, Status = false, DateOrder = DateTime.Now });
+            modelBuilder.Entity<Order>().HasData(new Order { Id = 3, CustomerId = 3, ProductId = 3, Status = true, DateOrder = DateTime.Now });
+            modelBuilder.Entity<Order>().HasData(new Order { Id = 4, CustomerId = 4, ProductId = 4, Status = false, DateOrder = DateTime.Now });
+            modelBuilder.Entity<Order>().HasData(new Order { Id = 5, CustomerId = 2, ProductId = 5, Status = true, DateOrder = DateTime.Now });
+            modelBuilder.Entity<Order>().HasData(new Order { Id = 6, CustomerId = 3, ProductId = 3, Status = false, DateOrder = DateTime.Now });
+            modelBuilder.Entity<Order>().HasData(new Order { Id = 7, CustomerId = 5, ProductId = 2, Status = true, DateOrder = DateTime.Now });
+            modelBuilder.Entity<Order>().HasData(new Order { Id = 8, CustomerId = 2, ProductId = 1, Status = false, DateOrder = DateTime.Now });
+            modelBuilder.Entity<Order>().HasData(new Order { Id = 9, CustomerId = 1, ProductId = 2, Status = true, DateOrder = DateTime.Now });
+            modelBuilder.Entity<Order>().HasData(new Order { Id = 10, CustomerId = 4, ProductId = 1, Status = false, DateOrder = DateTime.Now });
+            modelBuilder.Entity<Order>().HasData(new Order { Id = 11, CustomerId = 6, ProductId = 5, Status = true, DateOrder = DateTime.Now });
 
             #endregion
             base.OnModelCreating(modelBuilder);

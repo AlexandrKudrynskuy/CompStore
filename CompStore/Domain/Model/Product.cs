@@ -21,7 +21,9 @@ namespace Domain.Model
         public string Model { get; set; }
 
         public double Price { get; set; }
+        public int Count { get; set; }
         public string Discription { get; set; }
+        public string Photo { get; set; }
 
         public int CategoryID { get; set; }
         public int BrandId { get; set; }
