@@ -7,8 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+<<<<<<< Updated upstream
         <Grid.Background>
             <ImageBrush ImageSource="https://s1.1zoom.ru/big0/428/Apple_iPhone_Macbook_Laptops_Glasses_Telephone_519457_1280x853.jpg"></ImageBrush>
         </Grid.Background>
+=======
+        
+>>>>>>> Stashed changes
     </Grid>
 </Window>
