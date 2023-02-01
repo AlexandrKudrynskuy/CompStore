@@ -9,7 +9,7 @@ namespace Domain.Model
     public class Category
     {
         public int Id { get; set; }
-        public string NameCategory { get; set; }
+        public string Name{ get; set; }
         public List<Product> Products { get; set; }
         public int Count
         {
@@ -21,12 +21,12 @@ namespace Domain.Model
                 }
                 return 0;
             }
-            //set
-            //{
-            //    if (Products != null)
-                
-            //    Count = Products.Count;
-            //}
+            set
+            {
+                if (Products != null)
+
+                    Count = Products.Count;
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Dll.Context;
 using Domain.Model;
+using Domain.Model.Products;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace Dll.Repository
             context.SaveChanges();
         }        
         public IEnumerable<Product> GetFromCondition(Expression<Func<Product, bool>> condition) => context.Products.Where(condition).ToList();
-        public Product GetValue(int id) => context.Products.First(x => x.Id == id);
+        public Product GetValue(int id) => context.Products.First(x => x.Id == id) ;
         public void Update(int id, Product data)
         {
             var oldData = context.Products.First(x => x.Id == id);
@@ -43,6 +44,28 @@ namespace Dll.Repository
             oldData.BrandId = data.BrandId;
             oldData.Orders = data.Orders;
             oldData.BrandId = data.BrandId;
+            if (oldData is Laptop OldLaptop)
+            {
+                var laptop = data as Laptop;
+                OldLaptop.Ram = laptop.Ram;
+                OldLaptop.Processor = laptop.Processor;
+                OldLaptop.Hdd = laptop.Hdd;
+            }
+            if (oldData is MFU OldMFU)
+            {
+                var mFU = data as MFU;
+                OldMFU.PrinterType= mFU.PrinterType;
+                OldMFU.DPI= mFU.DPI;
+                OldMFU.HasWiFi = mFU.HasWiFi;
+            }
+            if (oldData is Display OldDisplay)
+            {
+                var Display = data as Display;
+                OldDisplay.DiagonalSize = Display.DiagonalSize;
+                OldDisplay.Color = Display.Color;   
+                OldDisplay.Resolution = Display.Resolution;
+            }
+
             context.Entry(oldData).State = EntityState.Modified;
             context.SaveChanges();
         }

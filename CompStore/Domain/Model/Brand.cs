@@ -10,8 +10,7 @@ namespace Domain.Model
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
-        public string Logo { get; set; }
+        public string PhotoLogo { get; set; }
         public List<Product> Products { get; set; }
 
         public int Count
@@ -26,11 +25,11 @@ namespace Domain.Model
 
 
             }
-            //set
-            //{
-            //    if (Products != null)
-            //        Count = Products.Count;
-            //}
+            set
+            {
+                if (Products != null)
+                    Count = Products.Count;
+            }
         }
 
     }
