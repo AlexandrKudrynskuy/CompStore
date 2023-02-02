@@ -30,7 +30,7 @@ namespace CompStore
         private readonly ProductService productService;
         public MainWindow(ProductService _productService, CategoryService categoryService )
         {
-            //InitializeComponent();
+            InitializeComponent();
             productService = _productService;
             //Expression<Func<Laptop, bool>> expression = x => x.Id != null;
             //string NameTextBox1_Text = null;
@@ -54,6 +54,11 @@ namespace CompStore
             //productService.Create(new Laptop { BrandId = 1, CategoryID = 1, Price = 22200, Model = "New", Discription = "Laptop", Hdd = 120, Processor = "I5", Ram = 4, Count = 12 });
 
             this.Show();
+
+        }
+
+        private void GoІhopping_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }

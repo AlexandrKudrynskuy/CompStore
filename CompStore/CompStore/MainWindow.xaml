@@ -7,12 +7,70 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="700">
     <Grid>
-<<<<<<< Updated upstream
+
         <Grid.Background>
             <ImageBrush ImageSource="https://s1.1zoom.ru/big0/428/Apple_iPhone_Macbook_Laptops_Glasses_Telephone_519457_1280x853.jpg"></ImageBrush>
         </Grid.Background>
-=======
-        
->>>>>>> Stashed changes
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2.1*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Grid.Column="1" 
+                Grid.Row="1"
+                Name="GoІhopping"
+                Margin="5"
+                Click="GoІhopping_Click"
+                FontSize="30"
+                FontFamily="Segoe Print">Перейти до покупок</Button>
+        <GroupBox Grid.Row="2"
+                  Grid.Column="1"
+                  Margin="5"
+                  Header="Зайти як Адміністратор"
+                  FontSize="20"
+                FontFamily="Segoe Print"
+            >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="0.5*"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition ></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           Margin="5"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right">Логін</TextBlock>
+                <TextBox Grid.Row="0"
+                           Grid.Column="1"
+                         Margin="10"></TextBox>
+                <TextBlock Grid.Row="1"
+                           Grid.Column="0"
+                           Margin="5"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right">Пароль</TextBlock>
+                <TextBox Grid.Row="1"
+                           Grid.Column="1"
+                         Margin="10">
+                </TextBox>
+                <Label Grid.Row="2"
+                       Grid.Column="1"></Label>
+                <Button Grid.Row="3"
+                       Grid.Column="1"
+                        Margin="10"
+                        Width="100"
+                        HorizontalAlignment="Right">Login</Button>
+            </Grid>
+        </GroupBox>
     </Grid>
 </Window>
