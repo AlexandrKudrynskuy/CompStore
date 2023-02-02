@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CompStore"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="700">
-    <Grid>
+        Title="MainWindow" Height="400" Width="700">
+    <Grid Name="start">
 
         <Grid.Background>
             <ImageBrush ImageSource="https://s1.1zoom.ru/big0/428/Apple_iPhone_Macbook_Laptops_Glasses_Telephone_519457_1280x853.jpg"></ImageBrush>
@@ -24,7 +24,7 @@
         <Button Grid.Column="1" 
                 Grid.Row="1"
                 Name="GoІhopping"
-                Margin="5"
+                Margin="10"
                 Click="GoІhopping_Click"
                 FontSize="30"
                 FontFamily="Segoe Print">Перейти до покупок</Button>

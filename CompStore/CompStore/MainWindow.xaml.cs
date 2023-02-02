@@ -30,6 +30,11 @@ namespace CompStore
         private readonly ProductService productService;
         public MainWindow(ProductService _productService, CategoryService categoryService )
         {
+            //string nameFile = "Fon Store.jpg";
+            //string fullPath = System.IO.Path.GetFullPath(nameFile);
+            //ImageBrush b = new ImageBrush();
+            //b.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Fon Start.jpg"));
+            //start.Background = b;
             InitializeComponent();
             productService = _productService;
             //Expression<Func<Laptop, bool>> expression = x => x.Id != null;
@@ -59,7 +64,9 @@ namespace CompStore
 
         private void GoІhopping_Click(object sender, RoutedEventArgs e)
         {
-
+            new StoreWindow().Show();
+            this.Close();
         }
+
     }
 }
