@@ -9,8 +9,8 @@ namespace Domain.Model
     public enum TypeUser
     { 
     MotType=-1,
-    Admin,
-    Client
+    Client,
+    Admin
     }
     public class Customer
     {

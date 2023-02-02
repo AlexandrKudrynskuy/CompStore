@@ -101,13 +101,13 @@ namespace Dll.Context
             modelBuilder.Entity<Category>().HasData(new Category { Id = 4, Name = "Speakers" });
 
 
-            modelBuilder.Entity<Customer>().HasData(new Customer { Id = 1, Name = "Serg", SurName = "Potalicyn", Login = "Serg", Password = "1", Email = "Serg@ukr.net", Phone = 098453423 , TypeUser=TypeUser.Client});
-            modelBuilder.Entity<Customer>().HasData(new Customer { Id = 2, Name = "Victoria", SurName = "Naymenko", Login = "Vika", Password = "1", Email = "Vika@ukr.net", Phone = 098453424 });
-            modelBuilder.Entity<Customer>().HasData(new Customer { Id = 3, Name = "Alex", SurName = "Kudrynskuy", Login = "Alex", Password = "1", Email = "Alex@ukr.net", Phone = 098453425 });
+            modelBuilder.Entity<Customer>().HasData(new Customer { Id = 1, Name = "Serg", SurName = "Potalicyn", Login = "Admin", Password = "1", Email = "Serg@ukr.net", Phone = 098453423 , TypeUser=TypeUser.Admin});
+            modelBuilder.Entity<Customer>().HasData(new Customer { Id = 2, Name = "Victoria", SurName = "Naymenko", Login = "Vika", Password = "1", Email = "Vika@ukr.net", Phone = 098453424, TypeUser = TypeUser.Client });
+            modelBuilder.Entity<Customer>().HasData(new Customer { Id = 3, Name = "Alex", SurName = "Kudrynskuy", Login = "Alex", Password = "1", Email = "Alex@ukr.net", Phone = 098453425, TypeUser = TypeUser.Client });
 
-            modelBuilder.Entity<Customer>().HasData(new Customer { Id = 4, Name = "Igor", SurName = "Petrenko", Login = "Igor", Password = "1", Email = "Igor@ukr.net", Phone = 098453423 });
-            modelBuilder.Entity<Customer>().HasData(new Customer { Id = 5, Name = "Dima", SurName = "Ivanenko", Login = "Dima", Password = "1", Email = "Dima@ukr.net", Phone = 098453424 });
-            modelBuilder.Entity<Customer>().HasData(new Customer { Id = 6, Name = "Maria", SurName = "Sergienko", Login = "Maria", Password = "1", Email = "Maria@ukr.net", Phone = 098453425 });
+            modelBuilder.Entity<Customer>().HasData(new Customer { Id = 4, Name = "Igor", SurName = "Petrenko", Login = "Igor", Password = "1", Email = "Igor@ukr.net", Phone = 098453423, TypeUser = TypeUser.Client });
+            modelBuilder.Entity<Customer>().HasData(new Customer { Id = 5, Name = "Dima", SurName = "Ivanenko", Login = "Dima", Password = "1", Email = "Dima@ukr.net", Phone = 098453424, TypeUser = TypeUser.Client });
+            modelBuilder.Entity<Customer>().HasData(new Customer { Id = 6, Name = "Maria", SurName = "Sergienko", Login = "Maria", Password = "1", Email = "Maria@ukr.net", Phone = 098453425, TypeUser = TypeUser.Client });
 
 
             modelBuilder.Entity<Order>().HasData(new Order { Id = 1, CustomerId = 1, ProductId = 1, Status = true, DateOrder = DateTime.Now });
