@@ -48,6 +48,7 @@ namespace CompStore
 
             service.AddTransient<MainWindow>();
             service.AddTransient<AdminPanel>();
+            service.AddTransient<StoreWindow>();
 
         }
 

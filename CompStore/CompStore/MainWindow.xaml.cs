@@ -61,7 +61,8 @@ namespace CompStore
 
         private void GoІhopping_Click(object sender, RoutedEventArgs e)
         {
-
+            var wind = App.provider.GetService<StoreWindow>();
+            wind.ShowDialog();
         }
 
       

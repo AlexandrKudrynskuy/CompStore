@@ -173,7 +173,8 @@
             </WrapPanel>
         <TreeView Grid.Column="2"
                   Grid.Row="1"
-                  Name="storeTreeViiew">
+                  Name="storeTreeViiew"
+                 > 
             <TreeViewItem Header="CompStore">
                 <TreeViewItem Header="Ноутбуки"></TreeViewItem>
                 <TreeViewItem Header="МФУ"></TreeViewItem>

@@ -88,9 +88,9 @@
                     </Grid.RowDefinitions>
                     <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1">
 
-                        <DockPanel LastChildFill="False">
-
-                            <TextBlock Name="IdHeaderTextBox" Width="15" Text="Id" Mouse.MouseDown="TextBlock_MouseDown"></TextBlock>
+                        <DockPanel LastChildFill="False" Name="HeaderDock">
+                           
+                            <TextBlock Name="Id" Width="15" Text="Id" Mouse.MouseDown="TextBlock_MouseDown" Tag="{Binding ElementName=HeaderDock, Path=Tag ,Converter={StaticResource ConvertHeader}}"></TextBlock>
                             <TextBlock Width="80" Text="Імя " Name="Name"></TextBlock>
                             <TextBlock Width="80" Text="Прізвище" Name="UserSurNameTextlock"></TextBlock>
                             <TextBlock Width="100" Text="Категорія" Name="CategoryNameTextlock"></TextBlock>

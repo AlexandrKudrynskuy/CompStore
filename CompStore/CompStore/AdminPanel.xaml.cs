@@ -52,7 +52,11 @@ namespace CompStore
             Brands = new ObservableCollection<Brand>();
             BrandListView.ItemsSource = Brands;
             CategoryListView.ItemsSource = categoryService.GetFromCondition(x => x.Id > 0);
-
+            var obj = new object();
+            var prod = new Product();
+            HeaderDock.Resources.Add(obj, prod);
+           
+            HeaderDock.Tag = prod;
             File.Delete("user.txt");
         }
 
@@ -121,13 +125,13 @@ namespace CompStore
 
         private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            //if (sender is TextBlock textBlock)
-            //{
-            //    if (textBlock.Name == nameof(Product.Id))
-            //    {
-            //        MessageBox.Show("Yes");
-            //    }
-            //}
+            if (sender is TextBlock textBlock)
+            {
+                if (textBlock.Name == nameof(Product.Id))
+                {
+                    MessageBox.Show("Yes");
+                }
+            }
         }
 
         private void Brend_MouseUp(object sender, MouseButtonEventArgs e)
