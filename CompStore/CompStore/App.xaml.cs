@@ -47,6 +47,8 @@ namespace CompStore
             service.AddTransient<CategoryRepository>();
 
             service.AddTransient<MainWindow>();
+            service.AddTransient<AdminPanel>();
+
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)

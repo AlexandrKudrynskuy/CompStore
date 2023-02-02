@@ -31,8 +31,8 @@ namespace Dll.Repository
             context.SaveChanges();
         }
 
-        public IEnumerable<Order> GetFromCondition(Expression<Func<Order, bool>> condition) => context.Orders.Where(condition).Include(nameof(Order.Product)).Include(nameof(Order.Customer)).ToList();
-
+        //public IEnumerable<Order> GetFromCondition(Expression<Func<Order, bool>> condition) => context.Orders.Where(condition).Include(nameof(Order.Customer)).Include(nameof(Order.Product)).ThenInclude(nameof(Order.Product.Brand)).ToList();
+        public IEnumerable<Order> GetFromCondition(Expression<Func<Order, bool>> condition) => context.Orders.Where(condition).Include(nameof(Order.Customer)).Include(x => x.Product).ThenInclude(x => x.Brand).ToList();
 
 
 

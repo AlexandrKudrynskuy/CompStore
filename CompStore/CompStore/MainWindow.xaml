@@ -53,23 +53,26 @@
                            HorizontalAlignment="Right">Логін</TextBlock>
                 <TextBox Grid.Row="0"
                            Grid.Column="1"
-                         Margin="10"></TextBox>
+                         Margin="10"
+                         Name="LoginTextBox"></TextBox>
                 <TextBlock Grid.Row="1"
                            Grid.Column="0"
                            Margin="5"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Right">Пароль</TextBlock>
-                <TextBox Grid.Row="1"
+                <PasswordBox Grid.Row="1"
                            Grid.Column="1"
-                         Margin="10">
-                </TextBox>
+                         Margin="10"
+                             Name="PasswordPaswordBox">
+                </PasswordBox>
                 <Label Grid.Row="2"
                        Grid.Column="1"></Label>
                 <Button Grid.Row="3"
                        Grid.Column="1"
                         Margin="10"
                         Width="100"
-                        HorizontalAlignment="Right">Login</Button>
+                        Name="LoginAdmin"
+                        HorizontalAlignment="Right" Click="LoginAdmin_Click">Login</Button>
             </Grid>
         </GroupBox>
     </Grid>
