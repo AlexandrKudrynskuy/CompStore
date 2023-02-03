@@ -1,6 +1,7 @@
 ﻿using Bll.Service;
 using Domain.Model;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -33,15 +34,16 @@ namespace CompStore
         public ObservableCollection<Product> Products { get; set; }
         public ObservableCollection<Brand> Brands { get; set; }
         public ObservableCollection<Category> Categories { get; set; }
+        public ObservableCollection<Order> Orders { get; set; }
 
         public AdminPanel(CategoryService _categoryService, ProductService _productService,
-            CustomersService _customersService, OrderService _orderService , BrandService _brandService)
+            CustomersService _customersService, OrderService _orderService, BrandService _brandService)
         {
-            categoryService= _categoryService;
-            productService= _productService;
-            customersService= _customersService;
-            orderService= _orderService;
-            brandService= _brandService;
+            categoryService = _categoryService;
+            productService = _productService;
+            customersService = _customersService;
+            orderService = _orderService;
+            brandService = _brandService;
 
             InitializeComponent();
 
@@ -51,12 +53,14 @@ namespace CompStore
             CategoryListView.ItemsSource = Categories;
             Brands = new ObservableCollection<Brand>();
             BrandListView.ItemsSource = Brands;
+            Orders = new ObservableCollection<Order>(orderService.GetFromCondition(x => x.Id > 0));
+            OrderListView.ItemsSource = Orders;
+
             CategoryListView.ItemsSource = categoryService.GetFromCondition(x => x.Id > 0);
             var obj = new object();
             var prod = new Product();
             HeaderDock.Resources.Add(obj, prod);
-           
-            HeaderDock.Tag = prod;
+
             File.Delete("user.txt");
         }
 
@@ -65,8 +69,7 @@ namespace CompStore
 
         private void Category_MouseUp(object sender, MouseButtonEventArgs e)
         {
-      
-         
+
             CategoryListView.ItemsSource = (categoryService.GetFromCondition(x => x.Id > 0));
 
         }
@@ -81,8 +84,8 @@ namespace CompStore
                 int.TryParse(checkBox.Tag.ToString(), out id);
                 var Prod = productService.GetFromCondition(x => x.CategoryID == id);
                 if (checkBox.IsChecked == true)
-                {                    
-             
+                {
+
                     foreach (var item in Prod)
                     {
                         Products.Add(item);
@@ -109,37 +112,25 @@ namespace CompStore
             }
         }
 
- 
+
         private void Client_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            ClientListView.ItemsSource=customersService.GetFromCondition(x => x.Id > 0);
+            ClientListView.ItemsSource = customersService.GetFromCondition(x => x.Id > 0);
         }
 
         private void Order_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            var List = orderService.GetFromCondition(x => x.Id > 0);
-           var NewList =  List.OrderBy(x => x.Customer.SurName);
-            OrderListView.ItemsSource = NewList;
-         
+
         }
 
-        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (sender is TextBlock textBlock)
-            {
-                if (textBlock.Name == nameof(Product.Id))
-                {
-                    MessageBox.Show("Yes");
-                }
-            }
-        }
+    
 
         private void Brend_MouseUp(object sender, MouseButtonEventArgs e)
 
         {
             var br = brandService.GetFromCondition(x => x.Id > 0);
             Brands = new ObservableCollection<Brand>(br);
-            BrandListView.ItemsSource = Brands; 
+            BrandListView.ItemsSource = Brands;
 
         }
 
@@ -162,9 +153,68 @@ namespace CompStore
                 var brand = new Brand { Name = BrandNameAddTextBox.Text, PhotoLogo = LogoBrandNameAddTextBox.Text };
                 brandService.Create(brand);
             }
-            else 
+            else
             {
                 MessageBox.Show("Поле назва бренду не може бути порожнім");
+            }
+        }
+
+        private void HeaderDock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.OriginalSource is TextBlock bl)
+            {
+                if (bl.Name==IdProductTextBlock.Name)
+                {
+                    Orders.Clear();
+                    var List = (orderService.GetFromCondition(x => x.Id > 0)).OrderBy(x=>x.Id);
+                    Orders = new ObservableCollection<Order>(List);
+                    OrderListView.ItemsSource = Orders;
+
+                }
+                if (bl.Name==CuctomerNameTextBlock.Name)
+                {
+                    Orders.Clear();
+                    var List = (orderService.GetFromCondition(x => x.Id > 0)).OrderBy(x => x.Customer.Name);
+                    Orders = new ObservableCollection<Order>(List);
+                    OrderListView.ItemsSource = Orders;
+                }
+                if (bl.Name==CustomerSurNameTextBlock.Name)
+                {
+                    Orders.Clear();
+                    var List = (orderService.GetFromCondition(x => x.Id > 0)).OrderBy(x => x.Customer.SurName);
+                    Orders = new ObservableCollection<Order>(List);
+                    OrderListView.ItemsSource = Orders;
+                }
+
+                if (bl.Name == CategoryNameTextBlock.Name)
+                {
+                    Orders.Clear();
+                    var List = (orderService.GetFromCondition(x => x.Id > 0)).OrderBy(x => x.Product.Category.Name);
+                    Orders = new ObservableCollection<Order>(List);
+                    OrderListView.ItemsSource = Orders;
+                }
+                if (bl.Name == BrandNameTextBlock.Name)
+                {
+                    Orders.Clear();
+                    var List = (orderService.GetFromCondition(x => x.Id > 0)).OrderBy(x => x.Product.Brand.Name);
+                    Orders = new ObservableCollection<Order>(List);
+                    OrderListView.ItemsSource = Orders;
+                }
+                
+                if (bl.Name == ModelNameTextBlock.Name)
+                {
+                    Orders.Clear();
+                    var List = (orderService.GetFromCondition(x => x.Id > 0)).OrderBy(x => x.Product.Model);
+                    Orders = new ObservableCollection<Order>(List);
+                    OrderListView.ItemsSource = Orders;
+                }
+                if (bl.Name == DateOrderTextBlock.Name)
+                {
+                    Orders.Clear();
+                    var List = (orderService.GetFromCondition(x => x.Id > 0)).OrderBy(x => x.DateOrder);
+                    Orders = new ObservableCollection<Order>(List);
+                    OrderListView.ItemsSource = Orders;
+                }
             }
         }
     }

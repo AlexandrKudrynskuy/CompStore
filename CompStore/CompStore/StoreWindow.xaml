@@ -77,7 +77,23 @@
                       Visibility="Hidden">
             <StackPanel Name="showProduct"></StackPanel>
         </ScrollViewer>
-           <WrapPanel Name="storeProduct"
+        <ListBox Name="CategoryListBox"  Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel></WrapPanel>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel Orientation="Vertical">
+                    <Image Source="{Binding PhotoCategory}" Width="100"></Image>
+                        <Button Content="{Binding Name}" Tag="{Binding Id}" Width="100"></Button>
+                    </WrapPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+           <!--<WrapPanel Name="storeProduct"
                         Orientation="Horizontal"
                         VerticalAlignment="Top"
                         Grid.Column="0"
@@ -170,7 +186,7 @@
                                 Margin="15">Мікрафони</Button>
                     </StackPanel>
                 </Border>
-            </WrapPanel>
+            </WrapPanel>-->
         <TreeView Grid.Column="2"
                   Grid.Row="1"
                   Name="storeTreeViiew"

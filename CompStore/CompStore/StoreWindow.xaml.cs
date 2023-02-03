@@ -1,6 +1,8 @@
 ﻿using Bll.Service;
+using Domain.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -21,8 +23,9 @@ namespace CompStore
     /// </summary>
     public partial class StoreWindow : Window
     {
-        
-        public StoreWindow()
+        private readonly CategoryService categoryService;
+        public ObservableCollection<Category> Categories { get; private set; }
+        public StoreWindow(CategoryService _categoryService)
         {
             //string nameFile = "Fon Store.jpg";
             //string fullPath = System.IO.Path.GetFullPath(nameFile);
@@ -30,7 +33,9 @@ namespace CompStore
             //b.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Fon Store.jpg"));
             //store.Background = b;
             InitializeComponent();
-            
+            categoryService = _categoryService;
+            Categories = new ObservableCollection<Category>(categoryService.GetFromCondition(x=>x.Id>0));
+            CategoryListBox.ItemsSource = Categories;
         }
 
         private void openCard_Click(object sender, RoutedEventArgs e)
@@ -50,16 +55,16 @@ namespace CompStore
 
         private void back_Click(object sender, RoutedEventArgs e)
         {
-            storeProduct.Visibility = Visibility.Visible;
-            back.Visibility = Visibility.Hidden;
-            filtr.Visibility = Visibility.Hidden;
+            //storeProduct.Visibility = Visibility.Visible;
+            //back.Visibility = Visibility.Hidden;
+            //filtr.Visibility = Visibility.Hidden;
         }
 
         private void laptopButton_Click(object sender, RoutedEventArgs e)
         {
-            storeProduct.Visibility = Visibility.Hidden;
-            back.Visibility = Visibility.Visible;
-            filtr.Visibility = Visibility.Visible;
+            //storeProduct.Visibility = Visibility.Hidden;
+            //back.Visibility = Visibility.Visible;
+            //filtr.Visibility = Visibility.Visible;
             //var lap = categoryService.GetValue(1);
 
 
@@ -67,23 +72,23 @@ namespace CompStore
 
         private void mfuButton_Click(object sender, RoutedEventArgs e)
         {
-            storeProduct.Visibility = Visibility.Hidden;
-            back.Visibility = Visibility.Visible;
-            filtr.Visibility = Visibility.Visible;
+            //storeProduct.Visibility = Visibility.Hidden;
+            //back.Visibility = Visibility.Visible;
+            //filtr.Visibility = Visibility.Visible;
         }
 
         private void displayButton_Click(object sender, RoutedEventArgs e)
         {
-            storeProduct.Visibility = Visibility.Hidden;
-            back.Visibility = Visibility.Visible;
-            filtr.Visibility = Visibility.Visible;
+            //storeProduct.Visibility = Visibility.Hidden;
+            //back.Visibility = Visibility.Visible;
+            //filtr.Visibility = Visibility.Visible;
         }
 
         private void speakerButton_Click(object sender, RoutedEventArgs e)
         {
-            storeProduct.Visibility = Visibility.Hidden;
-            back.Visibility = Visibility.Visible;
-            filtr.Visibility = Visibility.Visible;
+            //storeProduct.Visibility = Visibility.Hidden;
+            //back.Visibility = Visibility.Visible;
+            //filtr.Visibility = Visibility.Visible;
         }
     }
 }

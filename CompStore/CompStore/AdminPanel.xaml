@@ -88,16 +88,28 @@
                     </Grid.RowDefinitions>
                     <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1">
 
-                        <DockPanel LastChildFill="False" Name="HeaderDock">
-                           
-                            <TextBlock Name="Id" Width="15" Text="Id" Mouse.MouseDown="TextBlock_MouseDown" Tag="{Binding ElementName=HeaderDock, Path=Tag ,Converter={StaticResource ConvertHeader}}"></TextBlock>
-                            <TextBlock Width="80" Text="Імя " Name="Name"></TextBlock>
-                            <TextBlock Width="80" Text="Прізвище" Name="UserSurNameTextlock"></TextBlock>
-                            <TextBlock Width="100" Text="Категорія" Name="CategoryNameTextlock"></TextBlock>
-                            <TextBlock Width="100" Text="Бренд" Name="BrandNameTextlock"></TextBlock>
-                            <TextBlock Width="80" Text="Модель" Name="ModelProductTextlock"></TextBlock>
-                            <TextBlock Width="100" Text="Дата покупки" Name="DateOrderTextlock" ></TextBlock>
-
+                        <DockPanel LastChildFill="False" Name="HeaderDock" Mouse.MouseDown="HeaderDock_MouseDown">
+                            <Border Background="Gray" BorderBrush="Aqua" BorderThickness="1">
+                                <TextBlock Name="IdProductTextBlock" Width="15" Text="Id"></TextBlock>
+                            </Border>
+                            <Border Background="Gray" BorderBrush="Aqua" BorderThickness="1" >
+                                <TextBlock Width="80" Text="Імя " Name="CuctomerNameTextBlock"></TextBlock>
+                            </Border>
+                            <Border Background="Gray" BorderBrush="Aqua" BorderThickness="1">
+                                <TextBlock Width="80" Text="Прізвище" Name="CustomerSurNameTextBlock" ></TextBlock>
+                            </Border>
+                            <Border Background="Gray" BorderBrush="Aqua" BorderThickness="1">
+                                <TextBlock Width="100" Text="Категорія" Name="CategoryNameTextBlock" ></TextBlock>
+                            </Border>
+                            <Border Background="Gray" BorderBrush="Aqua" BorderThickness="1">
+                                <TextBlock Width="100" Text="Бренд" Name="BrandNameTextBlock" ></TextBlock>
+                            </Border>
+                            <Border Background="Gray" BorderBrush="Aqua" BorderThickness="1">
+                                <TextBlock Width="80" Text="Модель" Name="ModelNameTextBlock" ></TextBlock>
+                            </Border>
+                            <Border Background="Gray" BorderBrush="Aqua" BorderThickness="1">
+                                <TextBlock Width="100" Text="Дата покупки" Name="DateOrderTextBlock"></TextBlock>
+                            </Border>
                         </DockPanel>
                     </Border>
                     <ListView x:Name="OrderListView" Grid.Row="1">
@@ -131,12 +143,12 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
-                                        <DockPanel LastChildFill="False">
-                                            <TextBlock Text="{Binding Id}" Width="50"></TextBlock>
-                                            <TextBox Text="{Binding Name}" Width="50" IsReadOnly="True"></TextBox>
-                                            <Image  x:Name="LogoImage" Source="{Binding PhotoLogo}" Width="50"></Image>
+                                    <DockPanel LastChildFill="False">
+                                        <TextBlock Text="{Binding Id}" Width="50"></TextBlock>
+                                        <TextBox Text="{Binding Name}" Width="50" IsReadOnly="True"></TextBox>
+                                        <Image  x:Name="LogoImage" Source="{Binding PhotoLogo}" Width="50"></Image>
                                         <TextBox Text="{Binding Count}" Width="50" IsReadOnly="True"></TextBox>
-                                        <Button Name="ChangeLogo" Tag="{Binding Id}" Click="ChangeLogo_Click"> Змінити логотип</Button>
+                                        <Button Name="ChangeLogo" Tag="{Binding Id}" Click="ChangeLogo_Click">Змінити логотип</Button>
                                     </DockPanel>
                                 </Grid>
                             </DataTemplate>
@@ -145,7 +157,7 @@
                     <DockPanel Grid.Column="1">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"> </ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
                                 <ColumnDefinition Width="3*"></ColumnDefinition>
 
                             </Grid.ColumnDefinitions>
@@ -160,7 +172,7 @@
                             <TextBox Name="BrandNameAddTextBox" Grid.Row="0" Grid.Column="1" Width="150" HorizontalAlignment="Left"></TextBox>
                             <TextBlock Grid.Row="1" Grid.Column="0"> Логотип бренду</TextBlock>
                             <TextBox Name="LogoBrandNameAddTextBox" Grid.Row="1" Grid.Column="1" Width="150" HorizontalAlignment="Left"></TextBox>
-                            <Button Name="AddBrand" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="100" Height="25"  HorizontalAlignment="Left" Click="AddBrand_Click"> Додати</Button>
+                            <Button Name="AddBrand" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="100" Height="25"  HorizontalAlignment="Left" Click="AddBrand_Click">Додати</Button>
                         </Grid>
                     </DockPanel>
                 </Grid>

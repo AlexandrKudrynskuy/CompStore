@@ -11,6 +11,7 @@ namespace Domain.Model
         public int Id { get; set; }
         public string Name{ get; set; }
         public List<Product> Products { get; set; }
+        public string PhotoCategory { get; set; }
         public int Count
         {
             get

@@ -43,6 +43,7 @@ namespace Dll.Repository
         {
             var oldData = context.Categorys.First(x => x.Id == id);
             oldData.Name = data.Name;
+            oldData.PhotoCategory = data.PhotoCategory;
 
             context.Entry(oldData).State = EntityState.Modified;
             context.SaveChanges();
