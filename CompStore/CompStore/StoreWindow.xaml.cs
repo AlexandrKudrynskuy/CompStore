@@ -1,6 +1,7 @@
 ﻿using Bll.Service;
 using Domain.Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -24,8 +25,12 @@ namespace CompStore
     public partial class StoreWindow : Window
     {
         private readonly CategoryService categoryService;
+        private readonly ProductService  productService;
+
         public ObservableCollection<Category> Categories { get; private set; }
-        public StoreWindow(CategoryService _categoryService)
+        public ObservableCollection<Product> Products { get; private set; }
+
+        public StoreWindow(CategoryService _categoryService, ProductService _productService)
         {
             //string nameFile = "Fon Store.jpg";
             //string fullPath = System.IO.Path.GetFullPath(nameFile);
@@ -34,8 +39,13 @@ namespace CompStore
             //store.Background = b;
             InitializeComponent();
             categoryService = _categoryService;
-            Categories = new ObservableCollection<Category>(categoryService.GetFromCondition(x=>x.Id>0));
+            productService = _productService;
+            Products = new ObservableCollection<Product>(productService.GetFromCondition(x=>x.Id>0));
+            Categories = new ObservableCollection<Category>(categoryService.GetFromCondition(x => x.Id > 0));
             CategoryListBox.ItemsSource = Categories;
+            CategoryTreeView.Items.Clear();
+            CategoryTreeView.ItemsSource = Categories;
+              
         }
 
         private void openCard_Click(object sender, RoutedEventArgs e)
@@ -89,6 +99,11 @@ namespace CompStore
             //storeProduct.Visibility = Visibility.Hidden;
             //back.Visibility = Visibility.Visible;
             //filtr.Visibility = Visibility.Visible;
+        }
+
+        private void TreeViewItem_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            
         }
     }
 }
