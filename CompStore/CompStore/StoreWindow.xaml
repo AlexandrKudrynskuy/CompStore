@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CompStore"
         xmlns:model="clr-namespace:Domain.Model;assembly=Domain"
         mc:Ignorable="d"
-        Title="StoreWindow" Height="730" Width="550">
+        Title="StoreWindow" Height="730" Width="600">
     <Grid Name="store">
         <Grid.Background>
             <ImageBrush ImageSource="https://klike.net/uploads/posts/2022-11/1667632978_3-26.jpg"
@@ -76,9 +76,14 @@
                       Grid.Column="1"
                       Grid.Row="1"
                       Visibility="Hidden">
-            <StackPanel Name="showProduct"></StackPanel>
+            <WrapPanel Name="showProduct"></WrapPanel>
         </ScrollViewer>
-        <ListBox Name="CategoryListBox"  Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" 
+        <ListBox Name="CategoryListBox"  
+                 Grid.Column="0" 
+                 Grid.Row="1" 
+                 Grid.ColumnSpan="2"
+                 BorderBrush="Transparent"
+                 Background="Transparent"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -88,106 +93,35 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel Orientation="Vertical">
-                    <Image Source="{Binding PhotoCategory}" Width="100"></Image>
-                        <Button Content="{Binding Name}" Tag="{Binding Id}" Width="100"></Button>
+                        <Border Width="180"
+                        Height="230"
+                        Margin="5"
+                        Background="GhostWhite" 
+                        BorderBrush="Gainsboro" 
+                        BorderThickness="1"
+                        CornerRadius="8,8,3,3">
+                            <StackPanel Orientation="Vertical">
+                                <Image Source="{Binding PhotoCategory}"
+                                       Margin="5"
+                                       Height="150"></Image>
+                                <Button 
+                                    Content="{Binding Name}" 
+                                    Tag="{Binding Id}" 
+                                    Width="100"
+                                    Height="40"
+                                FontSize="15"
+                                Name="CategoryButton"
+                                Click="CategoryButton_Click"
+                                FontFamily="Segoe Print"
+                                BorderBrush="Transparent"
+                                Background="Transparent"
+                                Margin="15"></Button>
+                            </StackPanel>
+                        </Border>
                     </WrapPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-           <!--<WrapPanel Name="storeProduct"
-                        Orientation="Horizontal"
-                        VerticalAlignment="Top"
-                        Grid.Column="0"
-                        Grid.Row="1"
-                        Grid.ColumnSpan="2"
-                        HorizontalAlignment="Center">
-                <Border Width="180"
-                        Height="230"
-                        Margin="10"
-                        Background="GhostWhite" 
-                        BorderBrush="Gainsboro" 
-                        BorderThickness="1"
-                        CornerRadius="8,8,3,3">
-                    <StackPanel Orientation="Vertical">
-                        <Image Margin="2"
-                            Source="https://filearchive.cnews.ru/img/news/2020/07/08/red602.jpg"></Image>
-                        <Button Width="100"
-                                Height="40"
-                                FontSize="15"
-                                Name="laptopButton"
-                                Click="laptopButton_Click"
-                                FontFamily="Segoe Print"
-                                BorderBrush="Transparent"
-                                Background="Transparent"
-                                Margin="15">Ноутуки</Button>
-                    </StackPanel>
-                </Border>
-                <Border Width="180"
-                        Height="230"
-                        Margin="10"
-                        Background="GhostWhite" 
-                        BorderBrush="Gainsboro" 
-                        BorderThickness="1"
-                        CornerRadius="8,8,3,3">
-                    <StackPanel Orientation="Vertical">
-                        <Image Margin="2"
-                            Source="https://dostupnaya-strana.ru/pictures/product/big/15301_big.png"></Image>
-                        <Button Width="100"
-                                Height="40"
-                                FontSize="15"
-                                FontFamily="Segoe Print"
-                                Name="mfuButton"
-                                Click="mfuButton_Click"
-                                BorderBrush="Transparent"
-                                Background="Transparent"
-                                Margin="15">МФУ</Button>
-                    </StackPanel>
-                </Border>
-                <Border Width="180"
-                        Height="230"
-                        Margin="10"
-                        Background="GhostWhite" 
-                        BorderBrush="Gainsboro" 
-                        BorderThickness="1"
-                        CornerRadius="8,8,3,3">
-                    <StackPanel Orientation="Vertical">
-                        <Image Margin="2"
-                               Height="150"
-                            Source="https://marketing.brain.com.ua/static/articles_icon/90.png"></Image>
-                        <Button Width="100"
-                                Height="40"
-                                FontSize="15"
-                                FontFamily="Segoe Print"
-                                Name="displayButton"
-                                Click="displayButton_Click"
-                                BorderBrush="Transparent"
-                                Background="Transparent"
-                                Margin="15">Монітори</Button>
-                    </StackPanel>
-                </Border>
-                <Border Width="180"
-                        Height="230"
-                        Margin="10"
-                        Background="GhostWhite" 
-                        BorderBrush="Gainsboro" 
-                        BorderThickness="1"
-                        CornerRadius="8,8,3,3">
-                    <StackPanel Orientation="Vertical">
-                        <Image Margin="2"
-                               Height="150"
-                            Source="https://romsat.ua/upload/iblock/360/mikrofony-toa-em-410-petlychnyy-mikrofon.jpg"></Image>
-                        <Button Width="100"
-                                Height="40"
-                                FontSize="15"
-                                FontFamily="Segoe Print"
-                                Name="speakerButton"
-                                Click="speakerButton_Click"
-                                BorderBrush="Transparent"
-                                Background="Transparent"
-                                Margin="15">Мікрафони</Button>
-                    </StackPanel>
-                </Border>
-            </WrapPanel>-->
         <TreeView   x:Name="CategoryTreeView" Grid.Row="1" Grid.Column="2">
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate  ItemsSource="{Binding Products}">
