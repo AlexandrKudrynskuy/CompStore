@@ -123,6 +123,7 @@
                 Width="140"
                 Height="40"
                 FontSize="14"
-                FontFamily="Segoe Print">Зареєструватися</Button>
+                FontFamily="Segoe Print"
+                Click="Button_Click">Зареєструватися</Button>
     </Grid>
 </Window>

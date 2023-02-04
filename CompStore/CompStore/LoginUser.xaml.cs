@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Bll.Service;
+using Domain.Model;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,14 +22,28 @@ namespace CompStore
     /// </summary>
     public partial class LoginUser : Window
     {
-        public LoginUser()
+        private readonly CustomersService customersService;
+        
+        public LoginUser(CustomersService _customersService)
         {
+            customersService = _customersService;
+   
             InitializeComponent();
         }
 
         private void LoginU_Click(object sender, RoutedEventArgs e)
         {
-
+            var customer = customersService.Login(LoginTextBox.Text, PasswordPaswordBox.Password);
+            if (customer != null && customer.TypeUser == TypeUser.Client)
+            {
+                this.Close();
+                var wind = App.provider.GetService<StoreWindow>();
+                wind.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Логін або пароль неправильний, або ви адміністратор");
+            }
         }
 
         private void RegistrUser_Click(object sender, RoutedEventArgs e)

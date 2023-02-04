@@ -29,11 +29,13 @@ namespace CompStore
     {
         private readonly CategoryService categoryService;
         private readonly ProductService  productService;
+        private readonly CustomersService customersService;
+        public Customer Customer { get; set; }
 
         public ObservableCollection<Category> Categories { get; private set; }
         public ObservableCollection<Product> Products { get; private set; }
 
-        public StoreWindow(CategoryService _categoryService, ProductService _productService)
+        public StoreWindow(CategoryService _categoryService, ProductService _productService, CustomersService _customersService)
         {
             //string nameFile = "Fon Store.jpg";
             //string fullPath = System.IO.Path.GetFullPath(nameFile);
@@ -43,11 +45,24 @@ namespace CompStore
             InitializeComponent();
             categoryService = _categoryService;
             productService = _productService;
+            customersService = _customersService;
+            Customer = new Customer();
             Products = new ObservableCollection<Product>(productService.GetFromCondition(x=>x.Id>0));
             Categories = new ObservableCollection<Category>(categoryService.GetFromCondition(x => x.Id > 0));
             CategoryListBox.ItemsSource = Categories;
             CategoryTreeView.Items.Clear();
             CategoryTreeView.ItemsSource = Categories;
+            if (File.Exists("user.txt"))
+            {
+                var username = File.ReadAllText("user.txt");
+                var listUser =customersService.GetFromCondition(x => x.Login == username);
+                if (listUser.Count>0)
+                {
+                  Customer = listUser.First(x => x.Login == username);
+                  File.Delete("user.txt");
+                  
+                }
+            }
               
         }
 
@@ -60,7 +75,9 @@ namespace CompStore
         private void loginUser_Click(object sender, RoutedEventArgs e)
         {
             var wind = App.provider.GetService<LoginUser>();
+            this.Close();
             wind.ShowDialog();
+            
         }
 
         private void filtr_Click(object sender, RoutedEventArgs e)
