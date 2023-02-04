@@ -13,6 +13,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Bll.Service;
+using System.IO;
+using System.Collections.ObjectModel;
 
 namespace CompStore
 {
@@ -21,9 +24,43 @@ namespace CompStore
     /// </summary>
     public partial class CardWindow : Window
     {
-        public CardWindow()
+        private readonly CategoryService categoryService;
+        private readonly ProductService productService;
+        private readonly CustomersService customersService;
+        private readonly OrderService orderService;
+        public Customer Customer { get; set; }
+
+        public ObservableCollection<Category> Categories { get; private set; }
+        public ObservableCollection<Product> Products { get; private set; }
+        public ObservableCollection<Order> Orders { get; private set; }
+        public CardWindow(CategoryService _categoryService, OrderService _orderService, ProductService _productService, CustomersService _customersService)
         {
+            orderService = _orderService;
+            categoryService = _categoryService;
+            productService = _productService;
+            customersService = _customersService;
+            Customer = new Customer();
+            Products = new ObservableCollection<Product>();
+            Categories = new ObservableCollection<Category>();
+            
             InitializeComponent();
+            if (File.Exists("user.txt"))
+            {
+                var username = File.ReadAllText("user.txt");
+                var listUser = customersService.GetFromCondition(x => x.Login == username);
+                if (listUser.Count > 0)
+                {
+                    Customer = listUser.First(x => x.Login == username);
+                    File.Delete("user.txt");
+                    Orders = new ObservableCollection<Order>(orderService.GetFromCondition(x=>x.CustomerId == Customer.Id));
+                    
+                    foreach (var item in Orders)
+                    {
+                        
+                    }
+                }
+            }
+            
         }
 
         private void Order_Click(object sender, RoutedEventArgs e)

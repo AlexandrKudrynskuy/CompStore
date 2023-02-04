@@ -30,12 +30,13 @@ namespace CompStore
         private readonly CategoryService categoryService;
         private readonly ProductService  productService;
         private readonly CustomersService customersService;
+        private readonly OrderService orderService;
         public Customer Customer { get; set; }
 
         public ObservableCollection<Category> Categories { get; private set; }
         public ObservableCollection<Product> Products { get; private set; }
 
-        public StoreWindow(CategoryService _categoryService, ProductService _productService, CustomersService _customersService)
+        public StoreWindow(CategoryService _categoryService, OrderService _orderService, ProductService _productService, CustomersService _customersService)
         {
             //string nameFile = "Fon Store.jpg";
             //string fullPath = System.IO.Path.GetFullPath(nameFile);
@@ -43,6 +44,7 @@ namespace CompStore
             //b.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Fon Store.jpg"));
             //store.Background = b;
             InitializeComponent();
+            orderService = _orderService;
             categoryService = _categoryService;
             productService = _productService;
             customersService = _customersService;
@@ -60,7 +62,7 @@ namespace CompStore
                 {
                   Customer = listUser.First(x => x.Login == username);
                   File.Delete("user.txt");
-                  
+                  cardCount.Text = Customer.Orders.Where(x => x.Status == true).Count().ToString();
                 }
             }
               
@@ -68,6 +70,8 @@ namespace CompStore
 
         private void openCard_Click(object sender, RoutedEventArgs e)
         {
+
+            File.WriteAllText("user.txt", Customer.Login);
             var wind = App.provider.GetService<CardWindow>();
             wind.ShowDialog();
         }
@@ -195,6 +199,7 @@ namespace CompStore
             myGrid.Children.Add(textBlockPrice);
             var but = new Button();
             but.Content = "Додати в корзину";
+            but.Tag = product.Id;
             but.Click += but_Click;
             but.FontSize = 12;
             Grid.SetRow(but, 2);
@@ -297,7 +302,14 @@ namespace CompStore
 
         private void but_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (sender is Button butt)
+            {
+                int id;
+                int.TryParse(butt.Tag.ToString(), out id);
+                var order = new Order{CustomerId = Customer.Id, ProductId = id,Status=true,DateOrder = DateTime.Now};
+                orderService.Create(order);
+                cardCount.Text = Customer.Orders.Where(x => x.Status == true).Count().ToString();
+            }
         }
     }
 }
