@@ -1,6 +1,7 @@
 ﻿using Bll.Service;
 using Domain.Model;
 using Domain.Model.Products;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -52,7 +53,8 @@ namespace CompStore
 
         private void openCard_Click(object sender, RoutedEventArgs e)
         {
-
+            var wind = App.provider.GetService<CardWindow>();
+            wind.ShowDialog();
         }
 
         private void loginUser_Click(object sender, RoutedEventArgs e)
