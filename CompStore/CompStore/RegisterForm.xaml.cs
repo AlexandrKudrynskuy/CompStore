@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,24 +15,13 @@ using System.Windows.Shapes;
 namespace CompStore
 {
     /// <summary>
-    /// Interaction logic for LoginUser.xaml
+    /// Interaction logic for RegisterForm.xaml
     /// </summary>
-    public partial class LoginUser : Window
+    public partial class RegisterForm : Window
     {
-        public LoginUser()
+        public RegisterForm()
         {
             InitializeComponent();
-        }
-
-        private void LoginU_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void RegistrUser_Click(object sender, RoutedEventArgs e)
-        {
-            var wind = App.provider.GetService<RegisterForm>();
-            wind.ShowDialog();
         }
     }
 }
