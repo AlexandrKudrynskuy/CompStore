@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CompStore"
         mc:Ignorable="d"
-        Title="AdminPanel" Height="450" Width="800"
+        Title="AdminPanel" Height="450" Width="900"
+       
         >
     <Window.Resources>
         <local:ConverUser x:Key="ConverUser"></local:ConverUser>
@@ -17,7 +18,8 @@
             <TabItem Name="Category"  Header="Категорії та продукти" IsSelected="True" MouseUp="Category_MouseUp">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="7*"></ColumnDefinition>
                         <ColumnDefinition Width="6*"></ColumnDefinition>
 
                     </Grid.ColumnDefinitions>
@@ -27,9 +29,10 @@
                                 <Grid>
                                     <CheckBox Name="CategoryChekBox" Checked="CategoryChekBox_Checked"  Unchecked="CategoryChekBox_Unchecked" Tag="{Binding Id}">
                                         <DockPanel LastChildFill="False">
-                                            <TextBlock  Text="{Binding Id}" Width="50"></TextBlock>
+                                            <TextBlock  Text="{Binding Id}" Width="20"></TextBlock>
                                             <TextBox Text="{Binding Name}" Width="50" IsReadOnly="True"></TextBox>
-                                            <TextBox Text="{Binding Count}" Width="50" IsReadOnly="True"></TextBox>
+                                            <TextBox Text="{Binding Count}" Width="30" IsReadOnly="True"></TextBox>
+
 
                                         </DockPanel>
                                     </CheckBox>
@@ -43,19 +46,75 @@
                                 <DataTemplate>
                                     <Grid >
                                         <DockPanel LastChildFill="False">
-                                            <TextBlock  Text="{Binding Id}" Width="50" ></TextBlock>
+                                            <TextBlock  Text="{Binding Id}" Width="20" ></TextBlock>
                                             <TextBox Text="{Binding Category.Name}" Width="50" IsReadOnly="True"></TextBox>
                                             <TextBox Text="{Binding Brand.Name}" Width="50" IsReadOnly="True"></TextBox>
                                             <TextBox Text="{Binding Model}" Width="50" IsReadOnly="True"></TextBox>
                                             <TextBox Text="{Binding Price}" Width="50" IsReadOnly="True"></TextBox>
-                                            <TextBox Text="{Binding Count}" Width="50" IsReadOnly="True"></TextBox>
-
+                                            <TextBox Text="{Binding Count}" Width="30" IsReadOnly="True" Tag="Id"></TextBox>
+                                            <TextBlock Text="Змінити"></TextBlock>
+                                            <TextBox Text="{Binding Count}" Width="30" Tag="{Binding Id}"></TextBox>
+                                            <Button Content="Save" Width="30"  Name="SaveCountButton" Tag="{Binding Id}" Click="SaveCountButton_Click"></Button>
                                         </DockPanel>
+
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
                     </StackPanel>
+                    <Grid Grid.Row="0" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Name="HeaderColumnProductAddStackPanel" >
+                            <ComboBox x:Name="CategoryComboBox" SelectionChanged="CategoryComboBox_SelectionChanged" SelectedIndex="0">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" Tag="{Binding Id}"></TextBlock>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+
+                            </ComboBox>
+                            <StackPanel  Margin="10">
+                                <TextBlock Text="Модель" Margin="5"></TextBlock>
+                                <TextBlock Text="Ціна" Margin="5"></TextBlock>
+                                <TextBlock Text="Кількість" Margin="5"></TextBlock>
+                                <TextBlock Text="Опис" Margin="5"></TextBlock>
+                                <TextBlock Text="Фото" Margin="5"></TextBlock>
+                                <StackPanel x:Name="SmailHeaderStackPanel">
+
+                                </StackPanel>
+                            </StackPanel>
+                         
+                        </StackPanel>
+                        <StackPanel Grid.Column="1"  >
+                            <ComboBox x:Name="BrandComboBox" SelectedIndex="0">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <DockPanel LastChildFill="False">
+                                            <TextBlock Text="{Binding Name}" Tag="{Binding Id}"></TextBlock>
+                                        </DockPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+
+                            </ComboBox>
+                            <StackPanel Name="ValueColumnProductAddStackPanel">
+                                <StackPanel >
+                                    <TextBox Name="AddProdModelTextBox" Margin="5" LostFocus="AddProdModelTextBox_LostFocus"></TextBox>
+                                    <TextBox Name="AddProdPrice" Margin="5" LostFocus="AddProdPrice_LostFocus"></TextBox>
+                                    <TextBox Name="AddProdCount" Margin="5" LostFocus="AddProdCount_LostFocus"></TextBox>
+                                    <TextBox Name="AddProdDiscription" Margin="5" LostFocus="AddProdDiscription_LostFocus"></TextBox>
+                                    <TextBox Name="AddProdPhoto" Margin="5" LostFocus="AddProdPhoto_LostFocus"></TextBox>
+                                    <StackPanel x:Name="SmailValueStackPanel">
+
+                                    </StackPanel>
+                                </StackPanel>
+                               
+                            </StackPanel>
+
+                        </StackPanel>
+                    </Grid>
                 </Grid>
             </TabItem>
             <TabItem Header="Клієнти" MouseUp="Client_MouseUp" Name="Client">
@@ -135,11 +194,14 @@
             <TabItem Header="Бренди" Name="Brend" Mouse.MouseUp="Brend_MouseUp">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*"></ColumnDefinition>
-                        <ColumnDefinition Width="6*"></ColumnDefinition>
+                        <ColumnDefinition Width="13*"></ColumnDefinition>
+                        <ColumnDefinition Width="71*"/>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="209*"/>
+                        <ColumnDefinition Width="596*"></ColumnDefinition>
 
                     </Grid.ColumnDefinitions>
-                    <ListView Grid.Column="0" Name="BrandListView">
+                    <ListView Grid.Column="0" Name="BrandListView" Grid.ColumnSpan="4">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -154,7 +216,7 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <DockPanel Grid.Column="1">
+                    <DockPanel Grid.Column="4">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -177,6 +239,7 @@
                     </DockPanel>
                 </Grid>
             </TabItem>
+
         </TabControl>
     </Grid>
 </Window>

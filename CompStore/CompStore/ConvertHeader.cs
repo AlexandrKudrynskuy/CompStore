@@ -19,7 +19,7 @@ namespace CompStore
                 //{ 
                 //return nameof(Product.Brand.Name.ToString());
                 //}
-                var s = nameof(Product.Brand.Name);
+                //var s = nameof(Product.Brand.Name);
 
             }
 

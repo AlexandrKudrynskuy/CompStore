@@ -69,9 +69,9 @@ namespace Dll.Context
 
 
             #region Add In Db
-            modelBuilder.Entity<Laptop>().HasData(new Laptop { Id = 1, BrandId = 1, CategoryID = 1, Price = 22200, Model = "L1", Discription = "Laptop", Hdd = 120, Processor = "I5" , Ram=4, Count=12 , Photo= "https://klike.net/uploads/posts/2020-04/1586244741_1.jpg" });
+            modelBuilder.Entity<Laptop>().HasData(new Laptop { Id = 1, BrandId = 1, CategoryID = 2, Price = 22200, Model = "L1", Discription = "Laptop", Hdd = 120, Processor = "I5" , Ram=4, Count=12 , Photo= "https://klike.net/uploads/posts/2020-04/1586244741_1.jpg" });
             modelBuilder.Entity<Laptop>().HasData(new Laptop { Id = 2, BrandId = 2, CategoryID = 2, Price = 34400, Model = "L2", Discription = "Laptop", Hdd = 240, Processor = "I7",  Ram = 12, Count = 8, Photo = "https://klike.net/uploads/posts/2020-04/1586244779_2.jpg" });
-            modelBuilder.Entity<Laptop>().HasData(new Laptop { Id = 3, BrandId = 3, CategoryID = 1, Price = 12200, Model = "L3", Discription = "Laptop", Hdd = 512, Processor = "I3",  Ram = 8, Count = 3,Photo = "https://klike.net/uploads/posts/2020-04/1586244761_4.jpg" });
+            modelBuilder.Entity<Laptop>().HasData(new Laptop { Id = 3, BrandId = 3, CategoryID = 2, Price = 12200, Model = "L3", Discription = "Laptop", Hdd = 512, Processor = "I3",  Ram = 8, Count = 3,Photo = "https://klike.net/uploads/posts/2020-04/1586244761_4.jpg" });
             modelBuilder.Entity<Laptop>().HasData(new Laptop { Id = 4, BrandId = 2, CategoryID = 2, Price = 15600, Model = "L4", Discription = "Laptop", Hdd = 240, Processor = "Celeron", Ram = 16, Count = 1, Photo= "https://klike.net/uploads/posts/2020-04/1586244770_7.jpg" });
 
             modelBuilder.Entity<MFU>().HasData(new MFU { Id = 5, BrandId = 1, CategoryID = 1, Price = 15600, Model = "P4", Discription = "Printers", PrinterType = PrinterType.Laser, DPI="600*1200", HasWiFi = true, ColorCount=1, Count = 3, Photo= "https://tech-choice.net/wp-content/uploads/2019/09/mfu-dlja-pechati-foto-620x330.jpg" });

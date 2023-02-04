@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace Domain.Model
 {
+    public enum CategoryEnum
+    { 
+    MFU=1,
+    Laptops,
+    Display,
+    Speakers
+    }
     public class Category
     {
         public int Id { get; set; }
