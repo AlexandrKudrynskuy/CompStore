@@ -1,0 +1,71 @@
+﻿<Window x:Class="CompStore.LoginUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CompStore"
+        mc:Ignorable="d"
+        Title="LoginUser" Height="350" Width="400" MaxHeight="350" MaxWidth="400">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="https://www.fortressofsolitude.co.za/wp-content/uploads/2021/08/Huawei-MateBook-14-Review.jpg"></ImageBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="1.2*"></RowDefinition>
+            <RowDefinition Height="1.2*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="2.6*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="1"
+                           Grid.Column="0"
+                           Margin="5"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right"
+                   >Логін</TextBlock>
+        <TextBox Grid.Row="1"
+                           Grid.Column="1"
+                         Margin="10"
+                         Name="LoginTextBox"></TextBox>
+        <TextBlock Grid.Row="2"
+                           Grid.Column="0"
+                           Margin="5"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right">Пароль</TextBlock>
+        <PasswordBox Grid.Row="2"
+                           Grid.Column="1"
+                         Margin="10"
+                             Name="PasswordPaswordBox">
+        </PasswordBox>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    HorizontalAlignment="Center"
+                    Grid.ColumnSpan="3">
+            <Button
+                   Margin="10"
+                   Width="90"
+                   Height="30"
+                   Name="RegistrUser"
+                   HorizontalAlignment="Right" 
+                Click="RegistrUser_Click"
+                BorderBrush="Transparent"
+                Background="Transparent">Registr</Button>
+            <Button 
+                   Margin="10"
+                   Width="90"
+                   Height="30"
+                   Name="LoginU"
+                   HorizontalAlignment="Right" 
+                   Click="LoginU_Click"
+                BorderBrush="Transparent"
+                Background="Transparent">LogIn</Button>
+        </StackPanel>
+        
+    </Grid>
+</Window>

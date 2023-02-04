@@ -1,0 +1,129 @@
+﻿<Window x:Class="CompStore.RegisterForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CompStore"
+        mc:Ignorable="d"
+        Title="RegisterForm" Height="450" Width="600">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="https://celes.club/uploads/posts/2022-05/1653424601_2-celes-club-p-fon-dlya-prezentatsii-s-chelovechkami-kras-2.jpg"></ImageBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.8*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="1.3*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0"
+                   Grid.Column="0"
+                   Margin="5"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   FontSize="20"
+                   FontFamily="Segoe Print">Ім'я</TextBlock>
+        <TextBox Grid.Row="0"
+                 Grid.Column="1"
+                 Margin="10"
+                 Name="NameTextBox"></TextBox>
+        <TextBlock Grid.Row="1"
+                   Grid.Column="0"
+                   Margin="5"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   FontSize="18"
+                   FontFamily="Segoe Print">Прівище</TextBlock>
+        <TextBox Grid.Row="1"
+                 Grid.Column="1"
+                 Margin="10"
+                 Name="SurNameTextBox"></TextBox>
+        <TextBlock Grid.Row="2"
+                   Grid.Column="0"
+                   Margin="5"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   FontSize="18"
+                   FontFamily="Segoe Print">Логін</TextBlock>
+        <TextBox Grid.Row="2"
+                 Grid.Column="1"
+                 Margin="10"
+                 Name="LoginTextBox"></TextBox>
+        <TextBlock Grid.Row="3"
+                   Grid.Column="0"
+                   Margin="5"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   FontSize="18"
+                   FontFamily="Segoe Print">Пароль</TextBlock>
+        <TextBox Grid.Row="3"
+                 Grid.Column="1"
+                 Margin="10"
+                 Name="PassTextBox"></TextBox>
+        <TextBlock Grid.Row="4"
+                   Grid.Column="0"
+                   Margin="5"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   FontSize="13"
+                   FontFamily="Segoe Print">Підтвердіть пароль</TextBlock>
+        <TextBox Grid.Row="4"
+                 Grid.Column="1"
+                 Margin="10"
+                 Name="Pass2TextBox"></TextBox>
+        <TextBlock Grid.Row="5"
+                   Grid.Column="0"
+                   Margin="5"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   FontSize="18"
+                   FontFamily="Segoe Print">Телефон</TextBlock>
+        <TextBox Grid.Row="5"
+                 Grid.Column="1"
+                 Margin="10"
+                 Name="TelTextBox"></TextBox>
+        <TextBlock Grid.Row="6"
+                   Grid.Column="0"
+                   Margin="5"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   FontSize="18"
+                   FontFamily="Segoe Print">Емейл</TextBlock>
+        <TextBox Grid.Row="6"
+                 Grid.Column="1"
+                 Margin="10"
+                 Name="MailTextBox"></TextBox>
+        <TextBlock Grid.Row="7"
+                   Grid.Column="0"
+                   Margin="5"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   FontSize="18"
+                   FontFamily="Segoe Print">Фото</TextBlock>
+        <TextBox Grid.Row="7"
+                 Grid.Column="1"
+                 Margin="10"
+                 Name="PhotoTextBox"></TextBox>
+        <Button Grid.Column="1"
+                Grid.Row="8"
+                Grid.RowSpan="2"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Width="140"
+                Height="40"
+                FontSize="14"
+                FontFamily="Segoe Print"
+                Click="Button_Click">Зареєструватися</Button>
+    </Grid>
+</Window>

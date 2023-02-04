@@ -49,7 +49,9 @@ namespace CompStore
             service.AddTransient<MainWindow>();
             service.AddTransient<AdminPanel>();
             service.AddTransient<StoreWindow>();
-
+            service.AddTransient<CardWindow>();
+            service.AddTransient<LoginUser>();
+            service.AddTransient<RegisterForm>();
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)
