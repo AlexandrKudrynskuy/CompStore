@@ -59,7 +59,8 @@ namespace CompStore
 
         private void loginUser_Click(object sender, RoutedEventArgs e)
         {
-
+            var wind = App.provider.GetService<LoginUser>();
+            wind.ShowDialog();
         }
 
         private void filtr_Click(object sender, RoutedEventArgs e)

@@ -50,7 +50,7 @@ namespace CompStore
             service.AddTransient<AdminPanel>();
             service.AddTransient<StoreWindow>();
             service.AddTransient<CardWindow>();
-
+            service.AddTransient<LoginUser>();
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)
