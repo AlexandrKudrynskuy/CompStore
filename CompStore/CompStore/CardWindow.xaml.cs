@@ -142,10 +142,34 @@ namespace CompStore
             return mygrid;
 
         }
+        private void ShowList()
+        {
+            var prod = new Product();
+            foreach (var item in Customer.Orders)
+            {
+                if (item.Status == true)
+                {
+                    prod = productService.GetValue(item.ProductId);
 
+                    Products.Add(prod);
+                }
+            }
+            foreach (var product in Products)
+            {
+                CardList.Items.Add(ShowCard(product));
+            }
+        }
         private void but_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (sender is Button butt)
+            {
+                int id;
+                int.TryParse(butt.Tag.ToString(), out id);
+                var order = new Order { CustomerId = Customer.Id, ProductId = id, Status = false, DateOrder = DateTime.Now };
+                orderService.Update(id, order);
+                CardList.Items.Clear();
+                ShowList();
+            }
         }
     }
 }
