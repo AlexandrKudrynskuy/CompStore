@@ -65,13 +65,28 @@
                 Click="openCard_Click" 
                 Margin="5" 
                 Height="33" 
-                Width="60" Opacity="0.6" 
+                Width="60" Opacity="0.6"
+                Visibility="Hidden"
                 HorizontalAlignment="Center">
             <WrapPanel>
                 <Image Margin="2" Source="https://cdn-icons-png.flaticon.com/512/1374/1374128.png"/>
                 <TextBlock Name="cardCount" Text="0" FontSize="20" Margin="1" Foreground="Red"></TextBlock>
             </WrapPanel>
         </Button>
+        <StackPanel Name="UserLogin"
+                    Orientation="Horizontal"
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    HorizontalAlignment="Right"
+                    Visibility="Hidden">
+            <TextBlock Text=""
+                       Name="UserName"
+                       FontSize="15"
+                       FontFamily="Segoe Print"></TextBlock>
+            <StackPanel Name="UserPhoto"
+                        Height="20"
+                        Width="40"></StackPanel>
+        </StackPanel>
         <ScrollViewer Name="storeScrol"
                       Grid.Column="1"
                       Grid.Row="1"

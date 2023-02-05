@@ -61,6 +61,13 @@ namespace CompStore
                 if (listUser.Count>0)
                 {
                   Customer = listUser.First(x => x.Login == username);
+                  openCard.Visibility = Visibility.Visible;
+                    loginUser.Visibility = Visibility.Hidden;
+                    UserLogin.Visibility = Visibility.Visible;
+                    UserName.Text = $"Вітаємо, {Customer.Name}";
+                    ImageBrush im = new ImageBrush();
+                    im.ImageSource = new BitmapImage(new Uri(Customer.PhotoPath, UriKind.RelativeOrAbsolute));
+                    UserPhoto.Background = im;
                   File.Delete("user.txt");
                   cardCount.Text = Customer.Orders.Where(x => x.Status == true).Count().ToString();
                 }
