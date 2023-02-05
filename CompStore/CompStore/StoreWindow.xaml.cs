@@ -168,7 +168,7 @@ namespace CompStore
             myGrid.RowDefinitions.Add(rowDefinition6);
 
             ImageBrush im = new ImageBrush();
-            im.ImageSource = new BitmapImage(new Uri(product.Photo, UriKind.RelativeOrAbsolute));
+            im.ImageSource = new BitmapImage(new Uri(product.Photo));
             var panel2 = new DockPanel();
             panel2.Background = im;
             panel2.Height = 90;

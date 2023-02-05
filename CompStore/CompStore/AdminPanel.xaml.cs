@@ -1,7 +1,9 @@
-﻿using Bll.Service;
+﻿using Bll;
+using Bll.Service;
 using Domain.Model;
 using Domain.Model.Products;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Win32;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -23,6 +25,7 @@ namespace CompStore
         private readonly CustomersService customersService;
         private readonly OrderService orderService;
         private readonly BrandService brandService;
+        private readonly Service service;
         public Product Product { get; set; }
         public MFU Mfu { get; set; }
 
@@ -38,7 +41,7 @@ namespace CompStore
 
 
         public AdminPanel(CategoryService _categoryService, ProductService _productService,
-            CustomersService _customersService, OrderService _orderService, BrandService _brandService)
+            CustomersService _customersService, OrderService _orderService, BrandService _brandService, Service _service)
         {
             categoryService = _categoryService;
             productService = _productService;
@@ -50,6 +53,7 @@ namespace CompStore
             Laptop = new Laptop();
             Display = new Display();
             Speaker = new Speaker();
+            service = _service;
             InitializeComponent();
 
             Products = new ObservableCollection<Product>();
@@ -62,9 +66,7 @@ namespace CompStore
             OrderListView.ItemsSource = Orders;
 
             CategoryListView.ItemsSource = categoryService.GetFromCondition(x => x.Id > 0);
-            //var obj = new object();
-            //var prod = new Product();
-            //HeaderDock.Resources.Add(obj, prod);
+ 
             CategoryComboBox.ItemsSource = categoryService.GetFromCondition(x => x.Id > 0);
             BrandComboBox.ItemsSource = brandService.GetFromCondition(x => x.Id > 0);
 
@@ -142,23 +144,12 @@ namespace CompStore
 
         }
 
-        private void ChangeLogo_Click(object sender, RoutedEventArgs e)
-        {
-            if (sender is Button button)
-            {
-                int id;
-                int.TryParse(button.Tag.ToString(), out id);
-                var brand = brandService.GetValue(id);
-                brand.PhotoLogo = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Dell-Logo.svg/1280px-Dell-Logo.svg.png";
-                brandService.Update(id, brand);
-            }
-        }
-
+       
         private void AddBrand_Click(object sender, RoutedEventArgs e)
         {
             if (BrandNameAddTextBox.Text != null)
             {
-                var brand = new Brand { Name = BrandNameAddTextBox.Text, PhotoLogo = LogoBrandNameAddTextBox.Text };
+                var brand = new Brand { Name = BrandNameAddTextBox.Text, PhotoLogo = LogoBrandFotoAddTextBox.Text };
                 brandService.Create(brand);
             }
             else
@@ -274,6 +265,7 @@ namespace CompStore
                 Mfu.Price = Product.Price;
                 Mfu.Discription = Product.Discription;
                 Mfu.Count = Product.Count;
+                Mfu.Photo = Product.Photo;
 
                 productService.Create(Mfu);
             }
@@ -286,6 +278,7 @@ namespace CompStore
                 Laptop.Price = Product.Price;
                 Laptop.Discription = Product.Discription;
                 Laptop.Count = Product.Count;
+                Laptop.Photo = Product.Photo;
 
                 productService.Create(Laptop);
             }
@@ -298,6 +291,7 @@ namespace CompStore
                 Display.Price = Product.Price;
                 Display.Discription = Product.Discription;
                 Display.Count = Product.Count;
+                Display.Photo = Product.Photo;
 
                 productService.Create(Display);
             }
@@ -310,6 +304,7 @@ namespace CompStore
                 Speaker.Price = Product.Price;
                 Speaker.Discription = Product.Discription;
                 Speaker.Count = Product.Count;
+                Speaker.Photo = Product.Photo;
 
                 productService.Create(Speaker);
             }
@@ -422,8 +417,8 @@ namespace CompStore
                         var ClolrSpekTextBox = new TextBox { Margin = new Thickness(5) };
 
                         PowerTextBox.LostFocus += PowerTextBox_LostFocus;
-                        WidthTextBox.LostFocus+= WidthTextBox_LostFocus;
-                        HeightTextBox.LostFocus+= HeightTextBox_LostFocus;
+                        WidthTextBox.LostFocus += WidthTextBox_LostFocus;
+                        HeightTextBox.LostFocus += HeightTextBox_LostFocus;
                         ClolrSpekTextBox.LostFocus += ClolrSpekTextBox_Lost_Focus;
                         stackPanelValueSpeakers.Children.Add(PowerTextBox);
                         stackPanelValueSpeakers.Children.Add(WidthTextBox);
@@ -584,14 +579,60 @@ namespace CompStore
             }
 
         }
-
-        private void AddProdPhoto_LostFocus(object sender, RoutedEventArgs e)
+        private void AddPhotoButton_Click(object sender, RoutedEventArgs e)
         {
-            if (AddProdPhoto.Text != null)
+            var openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Photo|*jpg";
+            if (openFileDialog.ShowDialog() == true)
             {
-                Product.Photo = AddProdPhoto.Text;
+                string temp = Guid.NewGuid() + ".jpg";
+                AddProdPhoto.Text = temp;   
+                File.Copy(openFileDialog.FileName, Helper.PhotoPathProduct + "\\" + temp);
+                Product.Photo = Helper.PhotoPathProduct + "\\" + temp;
+                
             }
+        }
 
+        private void BrandLogoButton_Click(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Photo|*jpg";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string temp = Guid.NewGuid() + ".jpg";
+
+                File.Copy(openFileDialog.FileName, Helper.PhotoPathBrand + "\\" + temp);
+                LogoBrandFotoAddTextBox.Text = Helper.PhotoPathBrand + "\\" + temp;
+
+            }
+        }
+
+        private void ChangeLogo_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button)
+            {
+                int id;
+                int.TryParse(button.Tag.ToString(), out id);
+                var brand = brandService.GetValue(id);
+
+                var openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Photo|*jpg";
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    string temp = Guid.NewGuid() + ".jpg";
+                    File.Copy(openFileDialog.FileName, Helper.PhotoPathBrand + "\\" + temp);
+                    brand.PhotoLogo = Helper.PhotoPathBrand + "\\" + temp;
+                    brandService.Update(id, brand);
+                }
+
+
+
+            }
+        }
+
+        private void ClearFoto_Click(object sender, RoutedEventArgs e)
+        {
+            service.ClearFoto();
         }
     }
 }

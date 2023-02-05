@@ -81,7 +81,7 @@
                                 <TextBlock Text="Ціна" Margin="5"></TextBlock>
                                 <TextBlock Text="Кількість" Margin="5"></TextBlock>
                                 <TextBlock Text="Опис" Margin="5"></TextBlock>
-                                <TextBlock Text="Фото" Margin="5"></TextBlock>
+                                <Button Content="Фото" Margin="1" Name="AddPhotoButton" Click="AddPhotoButton_Click" ></Button>
                                 <StackPanel x:Name="SmailHeaderStackPanel">
 
                                 </StackPanel>
@@ -105,7 +105,7 @@
                                     <TextBox Name="AddProdPrice" Margin="5" LostFocus="AddProdPrice_LostFocus"></TextBox>
                                     <TextBox Name="AddProdCount" Margin="5" LostFocus="AddProdCount_LostFocus"></TextBox>
                                     <TextBox Name="AddProdDiscription" Margin="5" LostFocus="AddProdDiscription_LostFocus"></TextBox>
-                                    <TextBox Name="AddProdPhoto" Margin="5" LostFocus="AddProdPhoto_LostFocus"></TextBox>
+                                    <TextBox IsReadOnly="True" Name="AddProdPhoto" Margin="5"></TextBox>
                                     <StackPanel x:Name="SmailValueStackPanel">
 
                                     </StackPanel>
@@ -232,14 +232,25 @@
                             </Grid.RowDefinitions>
                             <TextBlock Grid.Row="0" Grid.Column="0"> Назва бренду</TextBlock>
                             <TextBox Name="BrandNameAddTextBox" Grid.Row="0" Grid.Column="1" Width="150" HorizontalAlignment="Left"></TextBox>
-                            <TextBlock Grid.Row="1" Grid.Column="0"> Логотип бренду</TextBlock>
-                            <TextBox Name="LogoBrandNameAddTextBox" Grid.Row="1" Grid.Column="1" Width="150" HorizontalAlignment="Left"></TextBox>
+                            <Button  Name ="BrandLogoButton" Grid.Row="1" Grid.Column="0" Click="BrandLogoButton_Click"> Логотип бренду</Button>
+                            <TextBox Name="LogoBrandFotoAddTextBox" Grid.Row="1" Grid.Column="1" Width="150" HorizontalAlignment="Left" IsReadOnly="True"></TextBox>
                             <Button Name="AddBrand" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="100" Height="25"  HorizontalAlignment="Left" Click="AddBrand_Click">Додати</Button>
                         </Grid>
                     </DockPanel>
                 </Grid>
             </TabItem>
+            <TabItem Header="Сервіс">
+                <Grid Background="AliceBlue" ShowGridLines="True">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
 
+                    </Grid.RowDefinitions>
+                    <Button x:Name="ClearFoto" Width="100" Height="25" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" Click="ClearFoto_Click"> Видалити фотографії</Button>
+                    <TextBlock Grid.Row="1">Дозволяє видалити фотографії продуктів, брендів та користувачів, які вже не використовуються</TextBlock>
+                </Grid>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>

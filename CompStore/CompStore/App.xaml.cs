@@ -1,4 +1,5 @@
-﻿using Bll.Service;
+﻿using Bll;
+using Bll.Service;
 using Dll.Context;
 using Dll.Repository;
 using Microsoft.EntityFrameworkCore;
@@ -28,7 +29,9 @@ namespace CompStore
         private void ConfigureServices(ServiceCollection service)
         {
             service.AddDbContext<CompStoreContext>(option => { option.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CompStore;Integrated Security=True;");});
-           
+
+            service.AddTransient<Service>();
+
             service.AddTransient<ProductService>();
             service.AddTransient<ProductRepository>();
             
