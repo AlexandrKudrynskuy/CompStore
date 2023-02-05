@@ -52,11 +52,19 @@ namespace CompStore
                 {
                     Customer = listUser.First(x => x.Login == username);
                     File.Delete("user.txt");
-                    Orders = new ObservableCollection<Order>(orderService.GetFromCondition(x=>x.CustomerId == Customer.Id));
-                    
-                    foreach (var item in Orders)
+                    //Orders = new ObservableCollection<Order>(orderService.GetFromCondition(x=>x.CustomerId == Customer.Id));
+                    var prod = new Product();
+                    foreach (var item in Customer.Orders)
                     {
-                        
+                        if (item.Status == true)
+                        {
+                            prod = productService.GetValue(item.ProductId);
+                            Products.Add(prod);
+                        }
+                    }
+                    foreach (var product in Products)
+                    {
+                        CardList.Items.Add(ShowCard(product));
                     }
                 }
             }
@@ -67,6 +75,7 @@ namespace CompStore
         {
 
         }
+
         private UIElement ShowCard(Product product)
         {
             var mygrid = new Grid();
@@ -115,7 +124,7 @@ namespace CompStore
             textBlock2.FontFamily = new FontFamily("Gabriola");
             Grid.SetRow(textBlock2, 0);
             Grid.SetColumn(textBlock2, 4);
-             
+
             var but = new Button();
             but.Content = "Видалити";
             but.Click += but_Click;
