@@ -68,6 +68,7 @@ namespace CompStore
                 if (item.Status == true)
                 {
                     prod = productService.GetValue(item.ProductId);
+                   
                     Products.Add(prod);
                 }
             }
