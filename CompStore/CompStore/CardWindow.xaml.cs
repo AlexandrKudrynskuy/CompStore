@@ -62,6 +62,8 @@ namespace CompStore
 
         private void ShowList()
         {
+            int pr = 0;
+            int temp;
             var prod = new Product();
             foreach (var item in Customer.Orders)
             {
@@ -74,8 +76,12 @@ namespace CompStore
             }
             foreach (var product in Products)
             {
+                int.TryParse(product.Price.ToString(), out temp);
+                pr += temp;
+                
                 CardList.Items.Add(ShowCard(product));
             }
+            price.Text = pr.ToString();
         }
 
         private void Order_Click(object sender, RoutedEventArgs e)
