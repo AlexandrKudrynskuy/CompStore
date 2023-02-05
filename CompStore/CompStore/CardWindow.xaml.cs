@@ -52,15 +52,29 @@ namespace CompStore
                 {
                     Customer = listUser.First(x => x.Login == username);
                     File.Delete("user.txt");
-                    Orders = new ObservableCollection<Order>(orderService.GetFromCondition(x=>x.CustomerId == Customer.Id));
+                    //Orders = new ObservableCollection<Order>(orderService.GetFromCondition(x=>x.CustomerId == Customer.Id));
+                    ShowList();
                     
-                    foreach (var item in Orders)
-                    {
-                        
-                    }
                 }
             }
             
+        }
+
+        private void ShowList()
+        {
+            var prod = new Product();
+            foreach (var item in Customer.Orders)
+            {
+                if (item.Status == true)
+                {
+                    prod = productService.GetValue(item.ProductId);
+                    Products.Add(prod);
+                }
+            }
+            foreach (var product in Products)
+            {
+                CardList.Items.Add(ShowCard(product));
+            }
         }
 
         private void Order_Click(object sender, RoutedEventArgs e)
@@ -118,6 +132,7 @@ namespace CompStore
              
             var but = new Button();
             but.Content = "Видалити";
+            but.Tag = product.Id;
             but.Click += but_Click;
             Grid.SetRow(but, 1);
             Grid.SetColumn(but, 4);
@@ -136,7 +151,15 @@ namespace CompStore
 
         private void but_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (sender is Button butt)
+            {
+                int id;
+                int.TryParse(butt.Tag.ToString(), out id);
+                var order = new Order { CustomerId = Customer.Id, ProductId = id, Status = false, DateOrder = DateTime.Now };
+                orderService.Update(id,order);
+                CardList.Items.Clear();
+                ShowList();
+            }
         }
     }
 }
